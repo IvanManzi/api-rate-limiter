@@ -1,0 +1,5 @@
+com/apigw/ApigwApplication.class
+com/apigw/model/Response$ResponseBuilder.class
+com/apigw/controller/FallBackController.class
+com/apigw/model/Response$ResponseBuilderImpl.class
+com/apigw/model/Response.class

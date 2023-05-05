@@ -1,0 +1,18 @@
+server:
+  port: 1080
+spring:
+  application:
+    name: NOTIFICATION-SERVICE
+
+
+notification:
+  maxRequestsPerSecond: 10
+  maxRequestsPerMonth: 10000
+  maxRequestsAcrossSystem: 100000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true

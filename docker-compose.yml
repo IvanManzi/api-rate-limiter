@@ -1,0 +1,36 @@
+version: '1'
+services:
+  notification-service:
+    image: containerprince/api-rate-limiter:notification-service
+    build:
+      context: .
+      dockerfile: notification_service/Dockerfile
+    ports:
+      - "1080:1080"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE= http://eureka-server:8761/eureka
+
+
+  api-gateway:
+    image: containerprince/api-rate-limiter:api-gateway
+    build:
+      context: .
+      dockerfile: apigw/Dockerfile
+    ports:
+      - "9191:9191"
+    depends_on:
+      - notification-service
+      - eureka-server
+    environment:
+      - EUREKA_SERVER_URL=http://eureka-server:8761/eureka
+
+  eureka-server:
+    image: containerprince/api-rate-limiter:eureka-server
+    build:
+      context: .
+      dockerfile: eureka_service_discovery/Dockerfile
+    ports:
+      - "8761:8761"
+
